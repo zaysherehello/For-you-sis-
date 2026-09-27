@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Christmas Letter 🎄</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: #8f1f2d;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Georgia, "Times New Roman", serif;
+        color: #332b24;
+        overflow-x: hidden;
+    }
+
+    /* Floating Christmas decorations */
+    .decoration {
+        position: fixed;
+        color: #e8d7b5;
+        font-size: 25px;
+        animation: float 4s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    .d1 { top: 10%; left: 10%; }
+    .d2 { top: 20%; right: 12%; animation-delay: 1s; }
+    .d3 { bottom: 15%; left: 15%; animation-delay: 2s; }
+    .d4 { bottom: 10%; right: 10%; animation-delay: 3s; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .container {
+        width: 90%;
+        max-width: 650px;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .little-text {
+        color: #e8d7b5;
+        font-size: 14px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+
+    h1 {
+        color: #f4e7cb;
+        font-size: 42px;
+        font-weight: normal;
+        margin: 0 0 35px;
+    }
+
+    /* Christmas envelope */
+    .envelope {
+        background: #244b35;
+        width: 280px;
+        height: 180px;
+        margin: 0 auto 30px;
+        border-radius: 8px;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+        transition: transform 0.3s ease;
+    }
+
+    .envelope:hover {
+        transform: translateY(-6px) rotate(-1deg);
+    }
+
+    .envelope::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 95px solid #315d43;
+    }
+
+    .stamp {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        width: 42px;
+        height: 48px;
+        background: #e8d7b5;
+        color: #8f1f2d;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 21px;
+        z-index: 2;
+    }
+
+    .envelope-label {
+        position: absolute;
+        bottom: 25px;
+        width: 100%;
+        color: #f4e7cb;
+        font-size: 17px;
+        letter-spacing: 1px;
+        z-index: 2;
+    }
+
+    .open-text {
+        color: #e8d7b5;
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    /* Letter */
+    .letter {
+        display: none;
+        background: #f1e4c9;
+        border: 3px solid #244b35;
+        border-radius: 20px;
+        padding: 45px 40px;
+        text-align: left;
+        box-shadow: 10px 12px 0 rgba(36,75,53,0.35);
+        position: relative;
+        animation: appear 0.7s ease forwards;
+    }
+
+    .letter::before,
+    .letter::after {
+        position: absolute;
+        color: #8f1f2d;
+        font-size: 24px;
+    }
+
+    .letter::before {
+        content: "❦";
+        top: 18px;
+        left: 22px;
+    }
+
+    .letter::after {
+        content: "❦";
+        bottom: 18px;
+        right: 22px;
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .letter h2 {
+        color: #8f1f2d;
+        font-weight: normal;
+        font-size: 25px;
+        margin-top: 0;
+    }
+
+    .letter p {
+        font-size: 17px;
+        line-height: 1.8;
+        margin: 18px 0;
+    }
+
+    .signature {
+        color: #244b35;
+        font-style: italic;
+        font-size: 18px;
+        margin-top: 28px;
+    }
+
+    .footer {
+        margin-top: 30px;
+        color: #e8d7b5;
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 32px;
+        }
+
+        .letter {
+            padding: 38px 28px;
+        }
+
+        .letter p {
+            font-size: 16px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="decoration d1">✦</div>
+<div class="decoration d2">❄</div>
+<div class="decoration d3">✧</div>
+<div class="decoration d4">❄</div>
+
+<div class="container">
+
+    <div class="little-text">
+        From Cambodia with Christmas cheer
+    </div>
+
+    <h1>A Little Christmas Letter 🎄</h1>
+
+    <div class="open-text">
+        I made you a tiny little Christmas surprise ♡
+    </div>
+
+    <div class="envelope" onclick="openLetter()">
+        <div class="stamp">🎄</div>
+        <div class="envelope-label">
+            Click to open ✉️
+        </div>
+    </div>
+
+    <div class="letter" id="letter">
+
+        <h2>Dear [Her Name] ♡</h2>
+
+        <p>
+            I just wanted to leave you a little Christmas letter! 🎄
+        </p>
+
+        <p>
+            Merry Christmas! ❤️ I know it’s already Christmas
+            there in the Philippines, so I wanted to send a little
+            something your way from Cambodia.
+        </p>
+
+        <p>
+            I hope you’re having a really lovely Christmas,
+            surrounded by family, good food, laughter, and lots
+            of happy moments. 🎁✨
+        </p>
+
+        <p>
+            I’m really glad I got to know you, and I hope we get
+            to talk more and make more fun memories in the future!
+        </p>
+
+        <p>
+            Have a wonderful Christmas and enjoy the holidays! 🎄🤍
+        </p>
+
+        <div class="signature">
+            With love,<br>
+            Nyka ♡
+        </div>
+
+    </div>
+
+    <div class="footer">
+        ✧ Merry Christmas from Cambodia ✧
+    </div>
+
+</div>
+
+<script>
+function openLetter() {
+    const letter = document.getElementById("letter");
+    const envelope = document.querySelector(".envelope");
+    const openText = document.querySelector(".open-text");
+
+    letter.style.display = "block";
+    envelope.style.display = "none";
+    openText.style.display = "none";
+
+    setTimeout(() => {
+        letter.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 100);
+}
+</script>
+
+</body>
+</html>
